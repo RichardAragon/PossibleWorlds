@@ -1,0 +1,38 @@
+def possible_worlds_semantics(p, q, W):
+  """
+  Calculates the truth value of the counterfactual "If p, then q" using Lewis's possible world semantics.
+
+  Args:
+    p: A proposition.
+    q: A proposition.
+    W: The set of all possible worlds.
+
+  Returns:
+    True if the counterfactual is true, False otherwise.
+  """
+
+  # Check if p is true in all possible worlds.
+  for w in W:
+    if P(w) and not p(w):
+      return False
+
+  # Return True.
+  return True
+
+
+# Example usage:
+
+W = set(["w1", "w2"])
+P = {
+    "w1": {True, False},
+    "w2": {True, False}
+}
+
+p = lambda w: True
+q = lambda w: True
+
+# Calculate the truth value of the counterfactual "If p, then q".
+truth_value = possible_worlds_semantics(p, q, W)
+
+# Print the truth value.
+print(truth_value)
