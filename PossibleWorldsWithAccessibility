@@ -1,0 +1,40 @@
+def possible_worlds_semantics_with_accessibility_relation(p, q, W, R):
+  """
+  Calculates the truth value of the counterfactual "If p, then q" using Lewis's possible world semantics with an accessibility relation.
+
+  Args:
+    p: A proposition.
+    q: A proposition.
+    W: The set of all possible worlds.
+    R: A relation between possible worlds.
+
+  Returns:
+    True if the counterfactual is true, False otherwise.
+  """
+
+  # Check if p is true in all possible worlds accessible from the actual world.
+  for w in W:
+    if R(w, w') and P(w) and not p(w'):
+      return False
+
+  # Return True.
+  return True
+
+
+# Example usage:
+
+W = set(["w1", "w2"])
+R = {(w1, w2)}
+P = {
+    "w1": {True, False},
+    "w2": {True, False}
+}
+
+p = lambda w: True
+q = lambda w: True
+
+# Calculate the truth value of the counterfactual "If p, then q".
+truth_value = possible_worlds_semantics_with_accessibility_relation(p, q, W, R)
+
+# Print the truth value.
+print(truth_value)
